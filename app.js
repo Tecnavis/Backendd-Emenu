@@ -43,7 +43,7 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
   cookie: { 
-    secure: false, // Set to true if using HTTPS
+    secure: true, // Set to true if using HTTPS
     maxAge: 600000 // Session max age in milliseconds
   }
 }));
@@ -52,7 +52,7 @@ const corsOptions = {
   origin: [
     'http://localhost:3000', // Local development
     'https://bucolic-liger-6c73bd.netlify.app', // Netlify frontend-client
-    'https://chimerical-semolina-c625ff.netlify.app',// Netlify admin-frontend
+    'https://precious-sprinkles-87cec4.netlify.app/'// Netlify admin-frontend
    
   ],
   // credentials: true // Allow cookies and credentials to be sent
