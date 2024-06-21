@@ -42,17 +42,23 @@ app.use(session({
   secret: 'your-secret-key',
   resave: false,
   saveUninitialized: true,
-  cookie: { secure: false } // Add this line to set the cookie secure flag to false
+  cookie: { 
+    secure: false, // Set to true if using HTTPS
+    maxAge: 600000 // Session max age in milliseconds
+  }
 }));
 
 const corsOptions = {
-  origin: ['http://localhost:3000'], // Add the allowed origin(s) here
-  origin: ['https://6662d53dd83d96f1e9bd047c--darling-cuchufli-c3ea01.netlify.app/'], 
-  origin: ['https://emenu-adminfrontent.web.app/'], 
-
-  credentials: true,
+  origin: [
+    'http://localhost:3000', // Local development
+    'https://6662d53dd83d96f1e9bd047c--darling-cuchufli-c3ea01.netlify.app', // Netlify frontend
+    'https://emenu-adminfrontent.web.app' // Firebase frontend
+  ],
+  credentials: true // Allow cookies and credentials to be sent
 };
+
 app.use(cors(corsOptions));
+
 
 // app.use(cors({
 //   origin: 'https://emenu-adminfrontent.web.app',
