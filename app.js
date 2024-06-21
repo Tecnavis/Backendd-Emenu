@@ -38,27 +38,27 @@ connectDB();
 app.use(express.json()); // For parsing application/json
 app.use(express.urlencoded({ extended: true })); // For parsing application/x-www-form-urlencoded
 
-app.use(session({
-  secret: 'your-secret-key',
-  resave: false,
-  saveUninitialized: true,
-  cookie: { 
-    secure: true, // Set to true if using HTTPS
-    maxAge: 600000 // Session max age in milliseconds
-  }
-}));
+// app.use(session({
+//   secret: 'your-secret-key',
+//   resave: false,
+//   saveUninitialized: true,
+//   cookie: { 
+//     secure: true, // Set to true if using HTTPS
+//     maxAge: 600000 // Session max age in milliseconds
+//   }
+// }));
 
-const corsOptions = {
-  origin: [
-    'http://localhost:3000', // Local development
-    'https://bucolic-liger-6c73bd.netlify.app', // Netlify frontend-client
-    'https://precious-sprinkles-87cec4.netlify.app/'// Netlify admin-frontend
+// const corsOptions = {
+//   origin: [
+//     'http://localhost:3000', // Local development
+//     'https://bucolic-liger-6c73bd.netlify.app', // Netlify frontend-client
+//     'https://precious-sprinkles-87cec4.netlify.app/'// Netlify admin-frontend
    
-  ],
-  // credentials: true // Allow cookies and credentials to be sent
-};
+//   ],
+//   // credentials: true // Allow cookies and credentials to be sent
+// };
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 
 
 // app.use(cors({
@@ -67,10 +67,10 @@ app.use(cors(corsOptions));
 // }));
 
 // For production (origin: '*')
-// app.use(cors({
-//   origin: '*',
-//   credentials: true
-// }));
+app.use(cors({
+  origin: '*',
+ 
+}));
 
 
 
