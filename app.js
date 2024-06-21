@@ -51,7 +51,7 @@ app.use(session({
 const corsOptions = {
   origin: [
     'http://localhost:3000', // Local development
-    'https://667533ffab5bad3e167b0223--genuine-moonbeam-1c034a.netlify.app/', // Netlify frontend
+    'https://bucolic-liger-6c73bd.netlify.app', // Netlify frontend
     'https://emenu-adminfrontent.web.app' // Firebase frontend
   ],
   credentials: true // Allow cookies and credentials to be sent
