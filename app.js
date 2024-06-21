@@ -55,7 +55,7 @@ const corsOptions = {
     'https://chimerical-semolina-c625ff.netlify.app',// Netlify admin-frontend
    
   ],
-  credentials: true // Allow cookies and credentials to be sent
+  // credentials: true // Allow cookies and credentials to be sent
 };
 
 app.use(cors(corsOptions));
