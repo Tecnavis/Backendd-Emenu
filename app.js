@@ -52,7 +52,7 @@ const corsOptions = {
   origin: [
     'http://localhost:3000', // Local development
     'https://bucolic-liger-6c73bd.netlify.app', // Netlify frontend-client
-    'https://sage-crepe-35fef6.netlify.app/'// Netlify admin-frontend
+    'https://profound-pudding-3f97d2.netlify.app/'// Netlify admin-frontend
    
   ],
   // credentials: true // Allow cookies and credentials to be sent
