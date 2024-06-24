@@ -1,51 +1,73 @@
-var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var connectDB =require('./config/db')
+var createError = require('http-errors');
+var bodyParser = require('body-parser');
+var cors = require('cors');
+var session = require('express-session');
+var connectDB = require('./config/db');
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var adminRouter = require('./routes/admin');
-const bodyParser = require('body-parser');
 
+var app = express();
 
-const cors = require('cors');
+// Connect to MongoDB
+connectDB();
 
-const app = express();
-
-connectDB(); // Connect to MongoDB
-
+// Enable CORS
 app.use(cors({
   origin: '*'
 }));
 
+// Logger and parsers
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
-app.use('/images', express.static(path.join(__dirname, 'images')));
 
+// Session management
+app.use(session({
+  secret: 'yourSecretKey', // Use a strong secret in production
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false } // Use secure: true in production with HTTPS
+}));
+
+// Static files
+app.use(express.static(path.join(__dirname, 'public')));
+app.use('/images', express.static(path.join(__dirname, 'images')));
+app.use(express.static(path.join(__dirname, 'frontend/build')));
+
+// Routes
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/admin', adminRouter);
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
+// Catch 404 and forward to error handler
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
+// Send the main frontend application for all other routes
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'frontend/build', 'index.html'));
+});
+
+// Error handler
+app.use(function (err, req, res, next) {
+  // Log the error to the console for debugging
+  console.error(err);
+
+  // Set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+  // Send error response
+  res.status(err.status || 500).json({ message: err.message });
 });
 
 module.exports = app;
