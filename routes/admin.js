@@ -47,6 +47,8 @@ var dishesController = require('../Controller/dishesController')
 var maincategoriesController = require('../Controller/maincategoriesController');
 const isAuthenticated = require('../Middleware/authMiddleware');
 const adminController = require('../Controller/adminController');
+const settingsController = require('../Controller/settingsController');
+
 
 
 
@@ -87,5 +89,12 @@ router.get('/getmaincategories', maincategoriesController.getMaincategories);
 router.get('/getmaincategoriesbyid/:id', maincategoriesController.getMaincategoriesById);
 router.put('/putmaincategories/:id', maincategoriesController.putMaincategoriesById);
 router.delete('/deletemaincategories/:id', maincategoriesController.deleteMaincategoriesById);
+
+
+router.post('/postsettings', upload.array('image'), settingsController.postSettings);
+router.get('/getsettings', settingsController.getSettings);
+router.get('/getsettings/:id', settingsController.getSettingsById);
+router.put('/putsettings/:id', upload.array('image'), settingsController.putSettingsById);
+router.delete('/deletesettings/:id', settingsController.deleteSettingsById);
 
 module.exports = router
