@@ -37,6 +37,8 @@ exports.getSettings = asyncHandler(async (req, res) => {
   }
 });
 
+//hello
+
 // Get Settings By ID
 exports.getSettingsById = asyncHandler(async (req, res) => {
   const { id } = req.params;
