@@ -7,12 +7,14 @@ var bodyParser = require('body-parser');
 var cors = require('cors');
 var session = require('express-session');
 var connectDB = require('./config/db');
+const compression = require('compression');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var adminRouter = require('./routes/admin');
 
 var app = express();
+app.use(compression());
 
 // Connect to MongoDB
 connectDB();
