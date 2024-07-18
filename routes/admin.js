@@ -48,8 +48,7 @@ var maincategoriesController = require('../Controller/maincategoriesController')
 const isAuthenticated = require('../Middleware/authMiddleware');
 const adminController = require('../Controller/adminController');
 const settingsController = require('../Controller/settingsController');
-const subcategoryController = require('../Controller/subcategoryController');
-const cartController = require('../Controller/cartController');
+
 
 
 // Route definitions
@@ -79,12 +78,7 @@ router.put('/putcategories/:id',categoriesController.putCategoriesById);
 router.delete('/deletecategories/:id',categoriesController.deleteCategoriesById);
 
 
-// --subcategory--
-router.post('/postsubcategories',subcategoryController.postSubcategory);
-router.get('/getsubcategories',subcategoryController.getSubcategories);
-router.get('/getsubcategoriesbyid/:id',subcategoryController.getSubcategoryById);
-router.put('/putsubcategories/:id',subcategoryController.putSubcategoryById);
-router.delete('/deletesubcategories/:id',subcategoryController.deleteSubcategoryById);
+
 
 
 
@@ -95,12 +89,7 @@ router.get('/getdishesbyid/:id',dishesController.getDishesById);
 router.put('/putdishes/:id', upload.array('image'), dishesController.putDishesById);
 router.delete('/deletedishes/:id',dishesController.deleteDishesById);
 
-// --cart--
 
-router.post('/addtocart',cartController.postCart);
-router.get('/getcart', cartController.getCart);
-router.put('/updateCart/:id',  cartController.updateCart);
-router.delete('/deleteCart/:id', cartController.deleteCart);
 
 
 //---footer settings---
