@@ -51,10 +51,6 @@ const settingsController = require('../Controller/settingsController');
 
 
 
-
-
-
-
 // Route definitions
 router.post('/login', adminController.login);
 router.post('/logout', adminController.logout);
@@ -62,27 +58,9 @@ router.post('/logout', adminController.logout);
 router.get('/protected', isAuthenticated, (req, res) => {
     res.status(200).json({ message: 'You have access to this protected route' });
 });
-// --categories--
-
-router.post('/postcategories',categoriesController.postCategories);
-router.get('/getcategories',categoriesController.getCategories);
-router.get('/getcategoriesbyid/:id',categoriesController.getCategoriesById);
-// router.get('/getcategoriesbyid/:mainCategoriesId',categoriesController.getCategoriesByMainCategoryId);
-router.put('/putcategories/:id',categoriesController.putCategoriesById);
-router.delete('/deletecategories/:id',categoriesController.deleteCategoriesById);
 
 
-
-// router.post('/postdishes', upload.single('image'),dishesController.postDishes);
-router.post('/postdishes', upload.array('image'), dishesController.postDishes);
-router.get('/getdishes',dishesController.getDishes);
-router.get('/getdishesbyid/:id',dishesController.getDishesById);
-// router.put('/putdishes/:id',upload.single('image'),dishesController.putDishesById);
-router.put('/putdishes/:id', upload.array('image'), dishesController.putDishesById);
-router.delete('/deletedishes/:id',dishesController.deleteDishesById);
-
-
-//Main categoies
+//---Main categoies---
 
 router.post('/postmaincategories', maincategoriesController.postMaincategories);
 router.get('/getmaincategories', maincategoriesController.getMaincategories);
@@ -91,6 +69,30 @@ router.put('/putmaincategories/:id', maincategoriesController.putMaincategoriesB
 router.delete('/deletemaincategories/:id', maincategoriesController.deleteMaincategoriesById);
 
 
+// --categories--
+
+router.post('/postcategories',categoriesController.postCategories);
+router.get('/getcategories',categoriesController.getCategories);
+router.get('/getcategoriesbyid/:id',categoriesController.getCategoriesById);
+router.put('/putcategories/:id',categoriesController.putCategoriesById);
+router.delete('/deletecategories/:id',categoriesController.deleteCategoriesById);
+
+
+
+
+
+
+//--dishes---
+router.post('/postdishes', upload.array('image'), dishesController.postDishes);
+router.get('/getdishes',dishesController.getDishes);
+router.get('/getdishesbyid/:id',dishesController.getDishesById);
+router.put('/putdishes/:id', upload.array('image'), dishesController.putDishesById);
+router.delete('/deletedishes/:id',dishesController.deleteDishesById);
+
+
+
+
+//---footer settings---
 router.post('/postsettings', upload.array('image'), settingsController.postSettings);
 router.get('/getsettings', settingsController.getSettings);
 router.get('/getsettings/:id', settingsController.getSettingsById);
